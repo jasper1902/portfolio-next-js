@@ -1,10 +1,12 @@
-import Image from "next/image";
-import StarsCanvas from "./components/background/StarsBackground";
+import getProjects from "@/actions/getProject";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
   return (
     <>
-      <StarsCanvas />
+      {projects.map((project) => (
+        <p key={project.id}>{project.projectName}</p>
+      ))}
     </>
   );
 }
