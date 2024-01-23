@@ -1,6 +1,5 @@
 import { projects } from "@prisma/client";
 
-
 export const useSearchProject  = (
   projects: projects[],
   searchTerm: string

@@ -8,8 +8,8 @@ const Skill = () => {
       className="flex flex-col items-center justify-center h-full relative overflow-hidden pt-[35px] "
       style={{ transform: "scale(0.9" }}
     >
-      <div className="flex flex-col  justify-around flex-wrap items-center   max-w-[900px]">
-        <Heading title="My skill" colorFrom="teal-500" colorTo="slate-500" />
+      <div className="flex flex-col justify-around flex-wrap items-center max-w-[900px]">
+        <Heading title="MY SKILLS" colorFrom="teal-500" colorTo="slate-500" />
         <div className="flex flex-wrap gap-14 items-center justify-center">
           <Image
             src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg"

@@ -27,7 +27,7 @@ const Nav = () => {
 
   return (
     <>
-      <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#111]">
+      <Navbar onMenuOpenChange={setIsMenuOpen}>
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -60,7 +60,7 @@ const Nav = () => {
           <NavbarItem className="hidden sm:flex">
             <NextLink
               color="foreground"
-              href="https://github.com/jasper1902/Projects_portfolio"
+              href="https://github.com/jasper1902/portfolio-next-js"
             >
               <FaGithubSquare size={30} />
             </NextLink>

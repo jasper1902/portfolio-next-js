@@ -3,6 +3,7 @@ import Banner from "./components/Banner";
 import About from "./components/About";
 import Skill from "./components/Skill";
 import ProjectIndex from "./components/project/ProjectIndex";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <About />
         <Skill />
         <ProjectIndex />
+        <Footer />
       </div>
     </>
   );
