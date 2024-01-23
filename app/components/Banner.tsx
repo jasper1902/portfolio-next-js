@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 const Banner = () => {
   return (
-    <div className="flex flex-row items-center justify-center px-20 mt-[150px] z-[20] ">
+    <div className="flex flex-row items-center justify-center px-20 mt-[150px] z-[20] " id="banner">
       <div className="flex flex-col  justify-center  text-center">
         <div className="justify-center flex ">
           <Image className="rounded-full" src="/avatar.jpg" height={200} width={200} alt="Thanabodee" />

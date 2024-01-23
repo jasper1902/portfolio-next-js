@@ -35,7 +35,11 @@ const Nav = () => {
           />
           <NavbarBrand>
             <NextLink href="/">
-              <p className="font-bold text-inherit">Logo</p>
+              <p className="font-bold text-inherit">
+                <ScrollLink smooth={true} duration={500} to="banner">
+                  Logo
+                </ScrollLink>
+              </p>
             </NextLink>
           </NavbarBrand>
         </NavbarContent>
@@ -63,7 +67,7 @@ const Nav = () => {
           </NavbarItem>
           <NavbarItem>
             <Button color="primary" variant="flat">
-              <NextLink href={`./ThanabodeeCV.pdf`}>
+              <NextLink href={`/ThanabodeeCV.pdf`}>
                 <FaCloudDownloadAlt className="mr-2" />
                 Download CV
               </NextLink>
