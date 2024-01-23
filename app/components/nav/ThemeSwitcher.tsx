@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { BsSunFill, BsFillMoonFill } from "react-icons/bs";
 
-export function ThemeSwitcher() {
+function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -31,3 +31,5 @@ export function ThemeSwitcher() {
     </div>
   );
 }
+
+export default ThemeSwitcher;

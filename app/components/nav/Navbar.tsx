@@ -14,7 +14,7 @@ import {
   Link as NextLink,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ const Nav = () => {
 
   return (
     <>
-      <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-[#111]">
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}

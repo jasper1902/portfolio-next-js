@@ -18,9 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} bg-[#111] overflow-y-scroll overflow-x-hidden`}
+      >
         <Navbar />
-        <Providers>{children}</Providers>
+        <Providers>
+          <main className="h-full w-full  bg-[url('/LooperGroup2.png')] bg-no-repeat">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

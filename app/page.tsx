@@ -1,12 +1,10 @@
 import getProjects from "@/actions/getProject";
+import Banner from "./components/Banner";
 
-export default async function Home() {
-  const projects = await getProjects();
+export default function Home() {
   return (
     <>
-      {projects.map((project) => (
-        <p key={project.id}>{project.projectName}</p>
-      ))}
+      <Banner />
     </>
   );
 }
