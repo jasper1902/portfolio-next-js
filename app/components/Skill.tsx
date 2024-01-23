@@ -1,5 +1,6 @@
 import React from "react";
 import { Image } from "@nextui-org/react";
+import Heading from "./Heading";
 const Skill = () => {
   return (
     <section
@@ -8,10 +9,7 @@ const Skill = () => {
       style={{ transform: "scale(0.9" }}
     >
       <div className="flex flex-col  justify-around flex-wrap items-center   max-w-[900px]">
-        <h1 className="text-white font-semibold text-6xl">My skill</h1>
-        <p className=" tracking-[0.5em] text-transparent font-light pb-5  bg-clip-text bg-gradient-to-r from-teal-500 to-slate-500  text-1xl">
-          EXPLORE NOW
-        </p>
+        <Heading title="My skill" colorFrom="teal-500" colorTo="slate-500" />
         <div className="flex flex-wrap gap-14 items-center justify-center">
           <Image
             src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg"

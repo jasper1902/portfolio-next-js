@@ -2,6 +2,7 @@ import getProjects from "@/actions/getProject";
 import Banner from "./components/Banner";
 import About from "./components/About";
 import Skill from "./components/Skill";
+import ProjectIndex from "./components/project/ProjectIndex";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Banner />
         <About />
         <Skill />
+        <ProjectIndex />
       </div>
     </>
   );
