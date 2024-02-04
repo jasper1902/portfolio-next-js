@@ -33,14 +33,10 @@ const Nav = () => {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
-            <NextLink href="/">
-              <p className="font-bold text-inherit">
-                <ScrollLink smooth={true} duration={500} to="banner">
-                  Logo
-                </ScrollLink>
-              </p>
-            </NextLink>
+          <NavbarBrand className="font-bold text-inherit cursor-pointer">
+            <ScrollLink smooth={true} duration={500} to="banner">
+              Logo
+            </ScrollLink>
           </NavbarBrand>
         </NavbarContent>
 
