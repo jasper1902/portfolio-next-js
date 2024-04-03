@@ -7,12 +7,15 @@ import Navbar from "./components/nav/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    "https://portfolio-jasper.netlify.app/"
-  ),
+  metadataBase: new URL("https://portfolio-jasper.netlify.app/"),
   title: "Thanabodee Kumsub",
   description: "Developer Portfolio By Thanabodee Kumsub",
-  keywords: ["Developer", "Portfolio", "Developer Portflio", "Thanabodee Kumsub"],
+  keywords: [
+    "Developer",
+    "Portfolio",
+    "Developer Portflio",
+    "Thanabodee Kumsub",
+  ],
   openGraph: {
     title: "Thanabodee Kumsub",
     description: "Software Engineer",
@@ -30,8 +33,8 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-[#111] overflow-y-scroll overflow-x-hidden`}
       >
-        <Navbar />
         <Providers>
+          <Navbar />
           <main className="h-full w-full bg-[url('/LooperGroup2.png')] bg-no-repeat">
             {children}
           </main>

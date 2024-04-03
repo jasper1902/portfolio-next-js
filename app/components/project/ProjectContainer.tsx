@@ -4,12 +4,14 @@ import Card from "../Card";
 import { Input } from "@nextui-org/react";
 import { useSearchProject } from "@/hook/useSearchProject ";
 import { projects } from "@prisma/client";
+import { SafeUser } from "@/type/user";
 
 type Props = {
   projects: projects[];
+  currentUser: SafeUser | null;
 };
 
-const ProjectContainer = ({ projects }: Props) => {
+const ProjectContainer = ({ projects, currentUser }: Props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchProjects = useSearchProject(projects ?? [], searchTerm);
 
@@ -30,11 +32,8 @@ const ProjectContainer = ({ projects }: Props) => {
           searchProjects.map((item: projects, index: number) => (
             <Fragment key={index}>
               <Card
-                image={item.image}
-                stack={item.stack}
-                projectName={item.projectName}
-                category={item.category}
-                projectUrl={item.projectUrl}
+                project={item}
+                currentUser={currentUser}
               />
             </Fragment>
           ))
