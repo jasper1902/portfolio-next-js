@@ -22,7 +22,7 @@ const Form = ({ currentUser }: Props) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    if (!currentUser) {
+    if (currentUser?.role !== "ADMIN") {
       router.push("/");
       router.refresh();
     }
@@ -80,6 +80,10 @@ const Form = ({ currentUser }: Props) => {
       setIsLoading(false);
     }
   };
+
+  if (currentUser?.role !== "ADMIN") {
+    return <></>;
+  }
 
   return (
     <>
