@@ -103,9 +103,21 @@ const Crad = ({ project, currentUser }: Props) => {
         </CardBody>
         <CardFooter>
           <div className="flex items-center gap-4">
-            <a href={project.projectUrl}>
-              <Button color="primary">view</Button>
-            </a>
+            {project.demo && (
+              <>
+                <a href={project.demo}>
+                  <Button color="primary">Live demo</Button>
+                </a>
+              </>
+            )}
+
+            {!project.demo && project.repo && (
+              <>
+                <a href={project.repo}>
+                  <Button color="primary">Repository </Button>
+                </a>
+              </>
+            )}
             {currentUser && (
               <Button
                 color="danger"

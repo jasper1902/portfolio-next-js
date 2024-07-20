@@ -13,9 +13,10 @@ model projects {
   category    String
   stack       String[]
   image       String
-  projectUrl  String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  repo        String?
+  demo        String?
 }
 
 model Account {

@@ -40,7 +40,8 @@ const Form = ({ currentUser }: Props) => {
       category: "",
       stack: [],
       image: "",
-      projectUrl: "",
+      demo: "",
+      repo: "",
     },
   });
 
@@ -56,7 +57,7 @@ const Form = ({ currentUser }: Props) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       setIsLoading(true);
-      const { projectName, category, stack, image, projectUrl } = data;
+      const { projectName, category, stack, image, demo, repo } = data;
       const extractedStack = stack.map((item: { stack: string }) => item.stack);
 
       const newData = {
@@ -64,7 +65,8 @@ const Form = ({ currentUser }: Props) => {
         category,
         stack: extractedStack,
         image,
-        projectUrl,
+        demo,
+        repo,
       };
       const response = await axios.post("/api/project", newData);
 
@@ -117,8 +119,17 @@ const Form = ({ currentUser }: Props) => {
         />
 
         <Input
-          id="projectUrl"
-          label="Project URL"
+          id="demo"
+          label="demo URL"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
+        <Input
+          id="repo"
+          label="Github Repository URL"
           disabled={isLoading}
           register={register}
           errors={errors}
