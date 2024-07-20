@@ -124,7 +124,6 @@ const Form = ({ currentUser }: Props) => {
           disabled={isLoading}
           register={register}
           errors={errors}
-          required
         />
 
         <Input
@@ -133,7 +132,6 @@ const Form = ({ currentUser }: Props) => {
           disabled={isLoading}
           register={register}
           errors={errors}
-          required
         />
 
         <div>
