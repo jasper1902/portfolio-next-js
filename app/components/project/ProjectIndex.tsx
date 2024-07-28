@@ -1,11 +1,11 @@
 import React from "react";
-import getProjects from "@/actions/getProject";
+import { GetProjects } from "@/actions/project";
 import Heading from "../Heading";
 import ProjectContainer from "./ProjectContainer";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 
 const ProjectIndex = async () => {
-  const projects = await getProjects();
+  const projects = await GetProjects();
   const currentUser = await getCurrentUser();
 
   return (

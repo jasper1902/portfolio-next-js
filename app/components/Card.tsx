@@ -16,6 +16,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { DeleteProject } from "@/actions/project";
 
 interface Props {
   project: projects;
@@ -58,8 +59,8 @@ const Crad = ({ project, currentUser }: Props) => {
           icon: "success",
         });
 
-        const response = await axios.delete(`/api/project/${project.id}`);
-        if (response.status === 200) {
+        const deleted = await DeleteProject(project.id);
+        if (deleted) {
           router.push("/");
           router.refresh();
         }

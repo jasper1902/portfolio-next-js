@@ -1,4 +1,3 @@
-import getProjects from "@/actions/getProject";
 import Banner from "./components/Banner";
 import About from "./components/About";
 import Skill from "./components/Skill";

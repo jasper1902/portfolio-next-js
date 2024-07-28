@@ -10,9 +10,10 @@ import {
 } from "react-hook-form";
 import Input from "../components/input/Input";
 import { BsTrash3 } from "react-icons/bs";
-import { Button } from "@nextui-org/react";
-import axios from "axios";
+import { Button, Select, SelectItem } from "@nextui-org/react";
 import toast from "react-hot-toast";
+import { AddProject } from "@/actions/project";
+import { ProjectSchemaType } from "@/type/project";
 
 type Props = {
   currentUser: SafeUser | null;
@@ -37,7 +38,7 @@ const Form = ({ currentUser }: Props) => {
   } = useForm<FieldValues>({
     defaultValues: {
       projectName: "",
-      category: "",
+      category: "Frontend",
       stack: [],
       image: "",
       demo: "",
@@ -60,7 +61,7 @@ const Form = ({ currentUser }: Props) => {
       const { projectName, category, stack, image, demo, repo } = data;
       const extractedStack = stack.map((item: { stack: string }) => item.stack);
 
-      const newData = {
+      const newData: ProjectSchemaType = {
         projectName,
         category,
         stack: extractedStack,
@@ -68,9 +69,10 @@ const Form = ({ currentUser }: Props) => {
         demo,
         repo,
       };
-      const response = await axios.post("/api/project", newData);
 
-      if (response.status === 200) {
+      const newProject = await AddProject(newData);
+
+      if (newProject) {
         reset();
         router.push("/");
         router.refresh();
@@ -100,14 +102,20 @@ const Form = ({ currentUser }: Props) => {
           required
         />
 
-        <Input
+
+        <Select
           id="category"
           label="Category"
+          {...register("category", { required: true })}
           disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
+        >
+          {["Full stack", "Frontend", "Backend"].map((option) => (
+            <SelectItem key={option} value={option}>
+              {option}
+            </SelectItem>
+          ))}
+        </Select>
+        {errors.category && <span>This field is required</span>}
 
         <Input
           id="image"
