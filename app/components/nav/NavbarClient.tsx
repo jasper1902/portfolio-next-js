@@ -38,9 +38,7 @@ const NavbarClient = ({ currentUser }: Props) => {
             className="sm:hidden"
           />
           <NavbarBrand className="font-bold text-inherit cursor-pointer">
-            <NextLink href="/">
-              Home
-            </NextLink>
+            <NextLink href="/">Home</NextLink>
           </NavbarBrand>
         </NavbarContent>
 
@@ -55,9 +53,11 @@ const NavbarClient = ({ currentUser }: Props) => {
               </ScrollLink>
             </NavbarItem>
           ))}
-          {currentUser && (
+          {currentUser?.role === "ADMIN" && (
             <NavbarItem className="cursor-pointer text-slate-200 hover:text-slate-500">
-              <NextLink href="/form" color="foreground">Add Project</NextLink>
+              <NextLink href="/form" color="foreground">
+                Add Project
+              </NextLink>
             </NavbarItem>
           )}
         </NavbarContent>
@@ -78,7 +78,7 @@ const NavbarClient = ({ currentUser }: Props) => {
               </NextLink>
             </Button>
           </NavbarItem>
-          {currentUser && (
+          {currentUser?.role === "ADMIN" && (
             <NavbarItem>
               <Button color="danger" variant="flat" onClick={() => signOut()}>
                 Sign out
@@ -100,9 +100,11 @@ const NavbarClient = ({ currentUser }: Props) => {
               </ScrollLink>
             </NavbarMenuItem>
           ))}
-          {currentUser && (
+          {currentUser?.role === "ADMIN" && (
             <NavbarMenuItem className="cursor-pointer text-slate-200 hover:text-slate-500">
-              <NextLink href="/form" color="foreground">Add Project</NextLink>
+              <NextLink href="/form" color="foreground">
+                Add Project
+              </NextLink>
             </NavbarMenuItem>
           )}
           <NavbarMenuItem>
