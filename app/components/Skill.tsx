@@ -103,7 +103,7 @@ const SkillsSection = () => {
                   alt={`${skill.name} icon`}
                   className="h-14"
                 />
-                <span className="absolute opacity-0 group-hover:opacity-100 group-hover:text-gray-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
+                <span className="absolute opacity-0 group-hover:opacity-100 group-hover:text-white group-hover:text-sm group-hover:-translate-y-10 duration-700">
                   {skill.name}
                 </span>
               </button>
