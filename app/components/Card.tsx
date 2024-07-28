@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { DeleteProject } from "@/actions/project";
+import Link from "next/link";
 
 interface Props {
   project: projects;
@@ -105,7 +106,7 @@ const Crad = ({ project, currentUser }: Props) => {
           </div>
         </CardBody>
         <CardFooter>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             {project.demo && (
               <a href={project.demo}>
                 <Button color="primary">Live demo</Button>
@@ -117,7 +118,7 @@ const Crad = ({ project, currentUser }: Props) => {
                 <Button color="primary">Repository </Button>
               </a>
             )}
-            {currentUser && (
+            {currentUser?.role === "ADMIN" && (
               <Button
                 color="danger"
                 onClick={onClickDelete}
@@ -125,6 +126,11 @@ const Crad = ({ project, currentUser }: Props) => {
               >
                 Delete
               </Button>
+            )}
+            {currentUser?.role === "ADMIN" && (
+              <Link href={`/form/${project.id}`}>
+                <Button color="warning">Edit</Button>
+              </Link>
             )}
           </div>
         </CardFooter>

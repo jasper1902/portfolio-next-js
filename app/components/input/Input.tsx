@@ -13,6 +13,7 @@ type Props = {
   errors: FieldErrors;
   defaultValue?: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 };
 
 const Input = ({
@@ -25,6 +26,7 @@ const Input = ({
   errors,
   defaultValue,
   onChange,
+  value,
 }: Props) => {
   return (
     <div className="w-full">
@@ -40,6 +42,7 @@ const Input = ({
         errorMessage={errors[id] && `${errors[id]?.message}`}
         variant="bordered"
         onChange={onChange}
+        value={value}
       />
     </div>
   );
