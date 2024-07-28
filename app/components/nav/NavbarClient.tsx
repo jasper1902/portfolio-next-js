@@ -39,7 +39,7 @@ const NavbarClient = ({ currentUser }: Props) => {
           />
           <NavbarBrand className="font-bold text-inherit cursor-pointer">
             <NextLink href="/">
-              Logo
+              Home
             </NextLink>
           </NavbarBrand>
         </NavbarContent>

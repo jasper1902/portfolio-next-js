@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { SafeUser } from "@/type/user";
 import {
   Card,
@@ -13,13 +14,19 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+
 interface Props {
   project: projects;
   currentUser?: SafeUser | null;
 }
+
 const Crad = ({ project, currentUser }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+
   const onClickDelete = async () => {
     try {
       setIsLoading(true);
@@ -34,52 +41,51 @@ const Crad = ({ project, currentUser }: Props) => {
         buttonsStyling: false,
       });
 
-      (async () => {
-        const result = await swalWithBootstrapButtons.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, delete it!",
-          cancelButtonText: "No, cancel!",
-          reverseButtons: true,
+      const result = await swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      });
+
+      if (result.isConfirmed) {
+        await swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
         });
 
-        if (result.isConfirmed) {
-          await swalWithBootstrapButtons.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-
-          const response = await axios.delete(`/api/project/${project.id}`);
-          if (response.status === 200) {
-            router.push("/");
-            router.refresh();
-          }
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          await swalWithBootstrapButtons.fire({
-            title: "Cancelled",
-            text: "Your imaginary file is safe :)",
-            icon: "error",
-          });
+        const response = await axios.delete(`/api/project/${project.id}`);
+        if (response.status === 200) {
+          router.push("/");
+          router.refresh();
         }
-      })();
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        await swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error",
+        });
+      }
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <Card className="py-4">
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
-          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <Image
-            className="object-cover rounded-xl"
-            src={`${project.image}`}
+            className="object-cover rounded-xl cursor-pointer"
+            src={project.image}
             width={270}
+            onClick={() => setIsModalOpen(true)}
           />
         </CardHeader>
         <CardBody className="overflow-visible py-2">
@@ -90,11 +96,7 @@ const Crad = ({ project, currentUser }: Props) => {
 
             <div className="p-4 flex flex-wrap gap-2">
               {project.stack.map((tech: string) => (
-                <Chip
-                  key={tech}
-                  color="success"
-                  className="cursor-pointer hover:p-1.5 hover:transition-all duration-500"
-                >
+                <Chip key={tech} color="success">
                   {tech}
                 </Chip>
               ))}
@@ -104,19 +106,15 @@ const Crad = ({ project, currentUser }: Props) => {
         <CardFooter>
           <div className="flex items-center gap-4">
             {project.demo && (
-              <>
-                <a href={project.demo}>
-                  <Button color="primary">Live demo</Button>
-                </a>
-              </>
+              <a href={project.demo}>
+                <Button color="primary">Live demo</Button>
+              </a>
             )}
 
             {!project.demo && project.repo && (
-              <>
-                <a href={project.repo}>
-                  <Button color="primary">Repository </Button>
-                </a>
-              </>
+              <a href={project.repo}>
+                <Button color="primary">Repository </Button>
+              </a>
             )}
             {currentUser && (
               <Button
@@ -130,6 +128,48 @@ const Crad = ({ project, currentUser }: Props) => {
           </div>
         </CardFooter>
       </Card>
+
+      <Transition appear show={isModalOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => setIsModalOpen(false)}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl align-middle shadow-xl transition-all">
+                  <Image
+                    className="object-cover rounded-xl"
+                    src={project.image}
+                    width={1920}
+                  />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
     </>
   );
 };
