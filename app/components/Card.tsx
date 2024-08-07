@@ -113,7 +113,7 @@ const Crad = ({ project, currentUser }: Props) => {
               </a>
             )}
 
-            {!project.demo && project.repo && (
+            {project.repo && (
               <a href={project.repo}>
                 <Button color="primary">Repository </Button>
               </a>
