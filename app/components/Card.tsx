@@ -98,7 +98,7 @@ const Crad = ({ project, currentUser }: Props) => {
 
             <div className="p-4 flex flex-wrap gap-2">
               {project.stack.map((tech: string) => (
-                <Chip key={tech} color="success">
+                <Chip key={tech} color="default">
                   {tech}
                 </Chip>
               ))}
@@ -109,13 +109,13 @@ const Crad = ({ project, currentUser }: Props) => {
           <div className="flex flex-wrap items-center gap-4">
             {project.demo && (
               <a href={project.demo}>
-                <Button color="primary">Live demo</Button>
+                <Button color="default" variant="faded">Live demo</Button>
               </a>
             )}
 
             {project.repo && (
               <a href={project.repo}>
-                <Button color="primary">Repository </Button>
+                <Button color="default" variant="faded">Repository </Button>
               </a>
             )}
             {currentUser?.role === "ADMIN" && (

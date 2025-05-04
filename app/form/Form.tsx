@@ -11,13 +11,13 @@ import {
 import Input from "../components/input/Input";
 import { BsTrash3 } from "react-icons/bs";
 import { Button, Select, SelectItem } from "@nextui-org/react";
-import toast from "react-hot-toast";
 import {
   AddProject,
   GetProjectById,
   UpdateProjectDetail,
 } from "@/actions/project";
 import { ProjectSchemaType } from "@/type/project";
+import Swal from "sweetalert2";
 
 type FormProps = {
   currentUser: SafeUser | null;
@@ -108,7 +108,10 @@ const ProjectForm = ({ currentUser, projectId }: FormProps) => {
           reset();
           router.push("/");
           router.refresh();
-          toast.success("Project saved successfully");
+          Swal.fire({
+            icon: "success",
+            title: "Project saved successfully",
+          });
         }
       } catch (error) {
         console.error(error);

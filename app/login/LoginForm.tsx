@@ -5,10 +5,10 @@ import Input from "../components/input/Input";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button, Link } from "@nextui-org/react";
 import { SafeUser } from "@/type/user";
+import Swal from "sweetalert2";
 
 type Props = {
   currentUser: SafeUser | null;
@@ -47,17 +47,26 @@ const LoginForm = ({ currentUser }: Props) => {
       setIsLoading(false);
 
       if (callback?.ok) {
-        reset()
+        reset();
         router.push("/");
         router.refresh();
-        toast.success("Logged In");
+        Swal.fire({
+          icon: "success",
+          title: "Logged In",
+        });
       }
 
       if (callback?.error) {
-        toast.error(callback.error);
+        Swal.fire({
+          icon: "error",
+          title: callback.error,
+        });
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong",
+      });
     }
   };
 

@@ -7,12 +7,10 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import Input from "../components/input/Input";
 import { Button, Link } from "@nextui-org/react";
 import { SafeUser } from "@/type/user";
-
-
+import Swal from "sweetalert2";
 
 type Props = {
   currentUser: SafeUser | null;
@@ -47,7 +45,10 @@ const RegisterForm = ({ currentUser }: Props) => {
     try {
       await axios.post("/api/register", data);
 
-      toast.success("Account created");
+      Swal.fire({
+        icon: "success",
+        title: "Account created",
+      });
 
       const callback = await signIn("credentials", {
         email: data.email,
@@ -56,17 +57,28 @@ const RegisterForm = ({ currentUser }: Props) => {
       });
 
       if (callback?.ok) {
-        reset()
+        reset();
         router.push("/login");
         router.refresh();
-        toast.success("Logged In");
+
+        Swal.fire({
+          icon: "success",
+          title: "Logged In",
+          timer: 1500,
+        });
       }
 
       if (callback?.error) {
-        toast.error(callback.error);
+        Swal.fire({
+          icon: "error",
+          title: callback.error,
+        });
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong",
+      });
     } finally {
       setIsLoading(false);
     }

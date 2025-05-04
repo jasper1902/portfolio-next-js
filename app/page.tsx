@@ -3,6 +3,7 @@ import About from "./components/About";
 import Skill from "./components/Skill";
 import ProjectIndex from "./components/project/ProjectIndex";
 import Footer from "./components/Footer";
+import Contact from "./components/contract/ContractIndex";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <About />
         <Skill />
         <ProjectIndex />
+        <Contact/>
         <Footer />
       </div>
     </>
