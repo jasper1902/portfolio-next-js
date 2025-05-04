@@ -19,7 +19,7 @@
     "@react-three/fiber": "^8.15.14",
     "@types/bcrypt": "^5.0.2",
     "@types/three": "^0.160.0",
-    "axios": "^1.6.8",
+    "axios": "^1.8.2",
     "bcrypt": "^5.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.507.0",
